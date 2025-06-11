@@ -21,8 +21,6 @@ Welcome to my interactive 3D portfolio! This isn't just another portfolio websit
 - **Modern UI/UX**: Clean, intuitive interface with a focus on user experience
 - **Performance Optimized**: Fast loading times and smooth interactions
 - **Dark Mode**: Eye-friendly dark theme with elegant aesthetics
-- **Resume Download**: Easily download my resume with a dedicated button
-- **Interactive Footer**: Quick access to my GitHub, LinkedIn, and email
 
 ## 🛠️ Tech Stack
 
@@ -45,7 +43,7 @@ The portfolio features several impressive projects, including:
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/shashi162003/Portfolio-Website.git
+git clone https://github.com/yourusername/Portfolio-Website.git
 ```
 
 2. Install dependencies:
@@ -59,7 +57,6 @@ npm install
 npm run dev
 ```
 
-4. Open [http://localhost:3000](http://localhost:3000) to view the portfolio.
 
 ## 🎨 Design Philosophy
 
@@ -92,6 +89,10 @@ The portfolio is fully responsive and optimized for:
 - **Portfolio**: [Your Portfolio URL] <!-- Update with your deployed URL -->
 - **Email**: [shashikumargupta443@gmail.com](mailto:shashikumargupta443@gmail.com)
 
+## ⚠️ Known Issues
+
+- **Browser Compatibility**: The website currently does not open correctly in Chrome, but works as expected in Firefox.
+
 ## 📝 License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
@@ -101,3 +102,4 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 <div align="center">
   <sub>Built with ❤️ by Shashi Kumar Gupta</sub>
 </div>
+
