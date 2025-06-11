@@ -84,10 +84,9 @@ The portfolio is fully responsive and optimized for:
 
 ## 🤝 Connect With Me
 
-- **GitHub**: [Your GitHub Profile]
-- **LinkedIn**: [Your LinkedIn Profile]
-- **Portfolio**: [Your Portfolio URL]
-- **Email**: [Your Email]
+- **LinkedIn**: www.linkedin.com/in/shashi-kumar-gupta-36668b239
+- **Portfolio**: https://devshashi.dev
+- **Email**: shashikumargupta443@gmail.com
 
 ## 📝 License
 
