@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { HiDownload } from "react-icons/hi";
 
 import { styles } from "../styles";
 import { ComputersCanvas } from "./canvas";

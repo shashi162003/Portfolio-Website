@@ -14,6 +14,7 @@ import {
   MusicPlayer,
   LoadingScreen
 } from './components';
+import Footer from "./components/Footer";
 
 const App = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -22,7 +23,7 @@ const App = () => {
     // Simulate loading time
     const timer = setTimeout(() => {
       setIsLoading(false);
-    }, 2000);
+    }, 4000);
 
     return () => clearTimeout(timer);
   }, []);
@@ -58,6 +59,7 @@ const App = () => {
             </motion.div>
           )}
         </AnimatePresence>
+        <Footer />
       </div>
     </Router>
   );

@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { useState, useEffect } from "react";
 
 const techJokes = [
@@ -7,11 +7,15 @@ const techJokes = [
     "Why do programmers always mix up Halloween and Christmas? Because Oct 31 == Dec 25!",
     "Why did the JavaScript developer go to therapy? Because he had too many unresolved promises!",
     "Why did the computer go to the doctor? Because it had a virus!",
-    "Why do programmers prefer dark mode? Because light attracts bugs!",
-    "Why did the developer quit his job? Because he didn't get arrays!",
-    "Why do programmers prefer dark mode? Because light attracts bugs!",
-    "Why did the developer quit his job? Because he didn't get arrays!",
-    "Why do programmers prefer dark mode? Because light attracts bugs!"
+    "Debugging: Removing the needles from the haystack, only to realize it's a haystack of needles.",
+    "There are 10 types of people in the world: those who understand binary, and those who don't.",
+    "Why was the array unhappy? Because it was out of bounds!",
+    "What's a programmer's favorite place to hang out? Foo Bar.",
+    "Algorithm: Word used by programmers when they don't want to explain what they did.",
+    "Why do Java developers wear glasses? Because they don't C#.",
+    "What's a programmer's favorite snack? Microchips!",
+    "Why did the database break up with the application? It had too many commitments!",
+    "What do you call a programmer who can't code? A debugger!"
 ];
 
 const LoadingScreen = () => {
@@ -19,6 +23,7 @@ const LoadingScreen = () => {
     const [currentJoke, setCurrentJoke] = useState(0);
 
     useEffect(() => {
+        console.log("LoadingScreen useEffect mounted");
         const timer = setInterval(() => {
             setProgress((prevProgress) => {
                 if (prevProgress >= 100) {
@@ -30,14 +35,24 @@ const LoadingScreen = () => {
         }, 20); // Update every 20ms for smooth animation
 
         const jokeTimer = setInterval(() => {
-            setCurrentJoke((prev) => (prev + 1) % techJokes.length);
-        }, 3000); // Change joke every 3 seconds
+            setCurrentJoke((prev) => {
+                let newJokeIndex;
+                do {
+                    newJokeIndex = Math.floor(Math.random() * techJokes.length);
+                } while (newJokeIndex === prev);
+                console.log("Joke changed to index:", newJokeIndex, techJokes[newJokeIndex]);
+                return newJokeIndex;
+            });
+        }, 2000); // Change joke every 2 seconds
 
         return () => {
+            console.log("LoadingScreen useEffect unmounted");
             clearInterval(timer);
             clearInterval(jokeTimer);
         };
     }, []);
+
+    console.log("Current joke for render:", techJokes[currentJoke]);
 
     return (
         <div className="fixed inset-0 bg-black flex flex-col items-center justify-center z-50 font-mono">
@@ -62,7 +77,17 @@ const LoadingScreen = () => {
                     transition={{ delay: 0.4 }}
                     className="text-white text-xl mb-8 max-w-2xl px-4 leading-relaxed"
                 >
-                    {techJokes[currentJoke]}
+                    <AnimatePresence mode="wait">
+                        <motion.p
+                            key={currentJoke}
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            exit={{ opacity: 0, y: -20 }}
+                            transition={{ duration: 0.5 }}
+                        >
+                            {techJokes[currentJoke]}
+                        </motion.p>
+                    </AnimatePresence>
                 </motion.div>
 
                 <motion.div
