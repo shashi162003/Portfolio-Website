@@ -1,6 +1,7 @@
 import React, { Suspense, useRef, useState } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
 import { Sphere, MeshDistortMaterial } from '@react-three/drei';
+import CanvasLoader from '../Loader';
 
 const AnimatedSphere = () => {
     const sphereRef = useRef();
@@ -38,11 +39,11 @@ const SphereCanvas = () => {
         <Canvas camera={{ position: [0, 0, 4], fov: 45 }}>
             <ambientLight intensity={0.5} />
             <directionalLight position={[10, 10, 5]} intensity={1} />
-            <Suspense fallback={null}>
+            <Suspense fallback={<CanvasLoader />}>
                 <AnimatedSphere />
             </Suspense>
         </Canvas>
     );
 };
 
-export default SphereCanvas; 
+export default SphereCanvas;

@@ -2,6 +2,7 @@ import React, { Suspense, useRef } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
 import { Points, PointMaterial } from '@react-three/drei';
 import * as random from 'maath/random/dist/maath-random.esm';
+import CanvasLoader from '../Loader';
 
 const Particles = () => {
     const ref = useRef();
@@ -30,11 +31,11 @@ const Particles = () => {
 const ParticlesCanvas = () => {
     return (
         <Canvas camera={{ position: [0, 0, 1] }}>
-            <Suspense fallback={null}>
+            <Suspense fallback={<CanvasLoader />}>
                 <Particles />
             </Suspense>
         </Canvas>
     );
 };
 
-export default ParticlesCanvas; 
+export default ParticlesCanvas;
