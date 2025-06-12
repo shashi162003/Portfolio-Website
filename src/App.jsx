@@ -21,6 +21,7 @@ import BlogPost from './components/BlogPost';
 import BlogEditor from './components/BlogEditor';
 import Login from './components/Login';
 import { AuthProvider } from './contexts/AuthContext';
+import FeedbackForm from './components/FeedbackForm';
 
 const App = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -37,7 +38,7 @@ const App = () => {
   return (
     <AuthProvider>
       <Router>
-        <div className='relative z-0 bg-primary'>
+        <div className='relative z-0 bg-primary min-h-screen flex flex-col'>
           <MusicPlayer />
           <AnimatePresence mode="wait">
             {isLoading ? (
@@ -49,7 +50,7 @@ const App = () => {
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
                 transition={{ duration: 0.5 }}
-                className="w-full"
+                className="w-full flex-grow"
               >
                 <Routes>
                   <Route path="/" element={
@@ -72,6 +73,16 @@ const App = () => {
                   <Route path="/blog/:id" element={<BlogPost />} />
                   <Route path="/blog/new" element={<BlogEditor />} />
                   <Route path="/login" element={<Login />} />
+                  <Route path="/feedback" element={
+                    <div className="relative w-full h-screen">
+                      <div className="absolute inset-0">
+                        <StarsCanvas />
+                      </div>
+                      <div className="relative z-10 w-full h-full flex items-center justify-center">
+                        <FeedbackForm />
+                      </div>
+                    </div>
+                  } />
                 </Routes>
               </motion.div>
             )}

@@ -66,6 +66,13 @@ const Navbar = () => {
                 >
                   {nav.title}
                 </a>
+              ) : nav.url ? (
+                <Link
+                  to={nav.url}
+                  onClick={() => window.scrollTo(0, 0)}
+                >
+                  {nav.title}
+                </Link>
               ) : (
                 <a href={`#${nav.id}`}>{nav.title}</a>
               )}
@@ -105,6 +112,17 @@ const Navbar = () => {
                     >
                       {nav.title}
                     </a>
+                  ) : nav.url ? (
+                    <Link
+                      to={nav.url}
+                      onClick={() => {
+                        setToggle(!toggle);
+                        setActive(nav.title);
+                        window.scrollTo(0, 0);
+                      }}
+                    >
+                      {nav.title}
+                    </Link>
                   ) : (
                     <a href={`#${nav.id}`}>{nav.title}</a>
                   )}

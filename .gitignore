@@ -1,7 +1,10 @@
 # dependencies
 node_modules/
-/.pnp
-.pnp.js
+
+# environment variables
+.env
+.env.*
+!blog-backend/.env.example
 
 # testing
 /coverage

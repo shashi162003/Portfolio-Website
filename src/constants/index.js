@@ -53,24 +53,33 @@ export const navLinks = [
     id: "contact",
     title: "Contact",
   },
+  {
+    id: "feedback",
+    title: "Feedback",
+    url: "/feedback",
+  },
 ];
 
 const services = [
   {
     title: "Web Developer",
     icon: web,
+    link: "https://github.com/shashi162003",
   },
   {
     title: "Data Structures & Algorithms",
     icon: mobile,
+    link: "https://takeuforward.org/plus/profile/shashi16",
   },
   {
     title: "Backend Developer",
     icon: backend,
+    link: "https://github.com/shashi162003",
   },
   {
     title: "Electronics",
     icon: creator,
+    link: "https://www.linkedin.com/in/shashi-kumar-gupta-36668b239",
   },
 ];
 
