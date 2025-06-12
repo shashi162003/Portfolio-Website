@@ -4,6 +4,7 @@ node_modules/
 # environment variables
 .env
 .env.*
+!blog-backend/.env.example
 
 # testing
 /coverage
