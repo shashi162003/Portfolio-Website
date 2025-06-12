@@ -53,6 +53,9 @@ app.use((err, req, res, next) => {
     });
 });
 
+// Start daily feedback cron job
+require('./dailyFeedbackCron');
+
 // Connect to MongoDB
 mongoose.connect(process.env.MONGODB_URI)
     .then(() => {
@@ -66,4 +69,4 @@ mongoose.connect(process.env.MONGODB_URI)
     .catch((error) => {
         console.error('MongoDB connection error:', error);
         process.exit(1);
-    }); 
+    });
