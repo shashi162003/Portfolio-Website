@@ -17,10 +17,11 @@ const ServiceCard = ({ index, title, icon, link }) => (
         speed: 450,
       }}
       className='w-full green-pink-gradient p-[1px] rounded-[20px] shadow-card cursor-pointer'
-      onClick={() => window.open(link, '_blank', 'noopener,noreferrer')}
     >
       <div
         className='bg-tertiary rounded-[20px] py-5 px-12 min-h-[280px] flex justify-evenly items-center flex-col'
+        onClick={() => window.open(link, '_blank', 'noopener,noreferrer')}
+        style={{ cursor: 'pointer' }}
       >
         <img
           src={icon}
