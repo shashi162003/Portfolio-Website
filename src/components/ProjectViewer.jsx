@@ -74,9 +74,12 @@ const ProjectViewer = () => {
                         href={getProjectUrl(project.name)}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="px-6 py-3 bg-tertiary rounded-lg text-white font-medium hover:bg-tertiary/80 transition-all"
+                        className="px-6 py-3 rounded-lg text-white font-medium border border-white hover:bg-white hover:text-primary hover:scale-105 hover:shadow-lg transition-all duration-300 flex items-center gap-2"
                     >
-                        Live Demo
+                        <span>Live Demo</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                            <path fillRule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clipRule="evenodd" />
+                        </svg>
                     </a>
                 </div>
 

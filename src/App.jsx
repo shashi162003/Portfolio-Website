@@ -1,6 +1,7 @@
-import { BrowserRouter as Router } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
+import { Toaster } from 'react-hot-toast';
 
 import {
   Navbar,
@@ -15,6 +16,11 @@ import {
   LoadingScreen
 } from './components';
 import Footer from "./components/Footer";
+import BlogList from './components/BlogList';
+import BlogPost from './components/BlogPost';
+import BlogEditor from './components/BlogEditor';
+import Login from './components/Login';
+import { AuthProvider } from './contexts/AuthContext';
 
 const App = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -29,39 +35,52 @@ const App = () => {
   }, []);
 
   return (
-    <Router>
-      <div className='relative z-0 bg-primary'>
-        <MusicPlayer />
-        <AnimatePresence mode="wait">
-          {isLoading ? (
-            <LoadingScreen key="loading" />
-          ) : (
-            <motion.div
-              key="content"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.5 }}
-              className="w-full"
-            >
-              <div className='bg-hero-pattern bg-cover bg-no-repeat bg-center'>
-                <Navbar />
-                <Hero />
-              </div>
-              <About />
-              <Experience />
-              <Tech />
-              <Works />
-              <div className='relative z-0'>
-                <Contact />
-                <StarsCanvas />
-              </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
-        <Footer />
-      </div>
-    </Router>
+    <AuthProvider>
+      <Router>
+        <div className='relative z-0 bg-primary'>
+          <MusicPlayer />
+          <AnimatePresence mode="wait">
+            {isLoading ? (
+              <LoadingScreen key="loading" />
+            ) : (
+              <motion.div
+                key="content"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.5 }}
+                className="w-full"
+              >
+                <Routes>
+                  <Route path="/" element={
+                    <>
+                      <div className='bg-hero-pattern bg-cover bg-no-repeat bg-center'>
+                        <Navbar />
+                        <Hero />
+                      </div>
+                      <About />
+                      <Experience />
+                      <Tech />
+                      <Works />
+                      <div className='relative z-0'>
+                        <Contact />
+                        <StarsCanvas />
+                      </div>
+                    </>
+                  } />
+                  <Route path="/blog" element={<BlogList />} />
+                  <Route path="/blog/:id" element={<BlogPost />} />
+                  <Route path="/blog/new" element={<BlogEditor />} />
+                  <Route path="/login" element={<Login />} />
+                </Routes>
+              </motion.div>
+            )}
+          </AnimatePresence>
+          <Footer />
+        </div>
+        <Toaster />
+      </Router>
+    </AuthProvider>
   );
 };
 

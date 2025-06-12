@@ -1,7 +1,6 @@
 import React from "react";
 import Tilt from "react-tilt";
 import { motion } from "framer-motion";
-import { useNavigate } from 'react-router-dom';
 
 import { styles } from "../styles";
 import { github } from "../assets";
@@ -18,9 +17,6 @@ const ProjectCard = ({
   source_code_link,
   live_demo_link,
 }) => {
-  const projectId = name.toLowerCase().replace(/\s+/g, '-');
-  const liveDemoUrl = `https://${projectId}.vercel.app`;
-
   return (
     <motion.div variants={fadeIn("up", "spring", index * 0.5, 0.75)}>
       <Tilt
@@ -69,14 +65,12 @@ const ProjectCard = ({
         </div>
 
         {live_demo_link && (
-          <a
-            href={live_demo_link}
-            target="_blank"
-            rel="noopener noreferrer"
+          <button
+            onClick={() => window.open(live_demo_link, "_blank")}
             className='mt-4 px-6 py-3 bg-tertiary rounded-lg text-white font-medium hover:bg-tertiary/80 transition-all w-full text-center block'
           >
             View Live Demo
-          </a>
+          </button>
         )}
       </Tilt>
     </motion.div>

@@ -44,6 +44,12 @@ export const navLinks = [
     title: "Work",
   },
   {
+    id: "blog",
+    title: "Blog",
+    url: "/blog",
+    isExternal: true,
+  },
+  {
     id: "contact",
     title: "Contact",
   },
