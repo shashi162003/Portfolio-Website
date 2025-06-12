@@ -1,6 +1,7 @@
 import React, { useRef, useState } from "react";
 import { motion } from "framer-motion";
 import emailjs from "@emailjs/browser";
+import { Toaster, toast } from 'react-hot-toast';
 
 import { styles } from "../styles";
 import { EarthCanvas } from "./canvas";
@@ -62,7 +63,7 @@ const Contact = () => {
           ).then(
             () => {
               setLoading(false);
-              alert("Thank you! Your message has been sent, and a confirmation email is on its way.");
+              toast.success("Thank you! Your message has been sent, and a confirmation email is on its way.");
               setForm({
                 name: "",
                 email: "",
@@ -72,14 +73,14 @@ const Contact = () => {
             (error) => {
               setLoading(false);
               console.error("Failed to send confirmation email:", error);
-              alert("Your message was sent, but we couldn't send a confirmation. Please try again or contact me directly.");
+              toast.error("Your message was sent, but we couldn't send a confirmation. Please try again or contact me directly.");
             }
           );
         },
         (error) => {
           setLoading(false);
           console.error(error);
-          alert("Ahh, something went wrong. Please try again.");
+          toast.error("Ahh, something went wrong. Please try again.");
         }
       );
   };
@@ -136,8 +137,15 @@ const Contact = () => {
 
           <button
             type='submit'
-            className='bg-tertiary py-3 px-8 rounded-xl outline-none w-fit text-white font-bold shadow-md shadow-primary'
+            className='bg-tertiary py-3 px-8 rounded-xl outline-none w-fit text-white font-bold shadow-md shadow-primary flex items-center justify-center gap-2'
+            disabled={loading}
           >
+            {loading && (
+              <svg className="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+              </svg>
+            )}
             {loading ? "Sending..." : "Send"}
           </button>
         </form>
@@ -149,6 +157,7 @@ const Contact = () => {
       >
         <EarthCanvas />
       </motion.div>
+      <Toaster />
     </div>
   );
 };

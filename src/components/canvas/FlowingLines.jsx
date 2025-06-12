@@ -2,6 +2,7 @@ import React, { Suspense, useRef, useMemo } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
 import { Line } from '@react-three/drei';
 import * as THREE from 'three';
+import CanvasLoader from '../Loader';
 
 const FlowingLines = () => {
     const ref = useRef();
@@ -67,11 +68,11 @@ const FlowingLinesCanvas = () => {
     return (
         <Canvas camera={{ position: [0, 0, 5], fov: 75 }}>
             <color attach="background" args={['#000000']} />
-            <Suspense fallback={null}>
+            <Suspense fallback={<CanvasLoader />}>
                 <FlowingLines />
             </Suspense>
         </Canvas>
     );
 };
 
-export default FlowingLinesCanvas; 
+export default FlowingLinesCanvas;

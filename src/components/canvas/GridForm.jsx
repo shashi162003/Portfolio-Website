@@ -2,6 +2,7 @@ import React, { Suspense, useRef } from 'react';
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
 import { EffectComposer, Bloom, Noise } from '@react-three/postprocessing';
 import { useMousePosition } from '../../hooks/useMousePosition';
+import CanvasLoader from '../Loader';
 
 const Grid = () => {
     const gridRef = useRef();
@@ -43,7 +44,7 @@ const GridCanvas = () => {
     return (
         <Canvas camera={{ position: [0, 0, 5], fov: 75 }}>
             <color attach="background" args={['#000000']} />
-            <Suspense fallback={null}>
+            <Suspense fallback={<CanvasLoader />}>
                 <Grid />
                 <EffectComposer>
                     <Bloom
@@ -59,4 +60,4 @@ const GridCanvas = () => {
     );
 };
 
-export default GridCanvas; 
+export default GridCanvas;

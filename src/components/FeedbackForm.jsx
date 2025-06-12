@@ -13,16 +13,6 @@ const FeedbackForm = () => {
         message: '',
     });
     const [loading, setLoading] = useState(false);
-    const [isFormVisible, setIsFormVisible] = useState(false);
-
-    React.useEffect(() => {
-        // Add a small delay to ensure the form is mounted properly
-        const timer = setTimeout(() => {
-            setIsFormVisible(true);
-        }, 100);
-
-        return () => clearTimeout(timer);
-    }, []);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -64,10 +54,6 @@ const FeedbackForm = () => {
             setLoading(false);
         }
     };
-
-    if (!isFormVisible) {
-        return <div className="flex items-center justify-center min-h-[400px]"><div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-white"></div></div>;
-    }
 
     return (
         <div className="xl:mt-12 flex xl:flex-row flex-col-reverse gap-10 overflow-hidden">
@@ -121,7 +107,12 @@ const FeedbackForm = () => {
                         disabled={loading}
                         className="bg-tertiary py-3 px-8 rounded-xl outline-none w-fit text-white font-bold shadow-md shadow-primary disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
                     >
-                        {loading ? 'Sending...' : 'Send'}
+                        {loading ? (
+                            <svg className="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                                <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                            </svg>
+                        ) : 'Send'}
                     </button>
                 </form>
             </motion.div>
@@ -136,4 +127,4 @@ const FeedbackForm = () => {
     );
 };
 
-export default SectionWrapper(FeedbackForm, 'feedback'); 
+export default SectionWrapper(FeedbackForm, 'feedback');

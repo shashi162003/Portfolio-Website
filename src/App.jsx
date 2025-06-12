@@ -74,14 +74,11 @@ const App = () => {
                   <Route path="/blog/new" element={<BlogEditor />} />
                   <Route path="/login" element={<Login />} />
                   <Route path="/feedback" element={
-                    <div className="relative w-full h-screen">
-                      <div className="absolute inset-0">
-                        <StarsCanvas />
-                      </div>
-                      <div className="relative z-10 w-full h-full flex items-center justify-center">
-                        <FeedbackForm />
-                      </div>
-                    </div>
+                    <>
+                      <Navbar />
+                      <StarsCanvas />
+                      <FeedbackForm />
+                    </>
                   } />
                 </Routes>
               </motion.div>

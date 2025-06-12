@@ -147,16 +147,16 @@
 }
 
 .red-orange-gradient {
-  background: #FF4500; /* fallback for old browsers (OrangeRed) */
+  background: #ff4500; /* fallback for old browsers (OrangeRed) */
   background: -webkit-linear-gradient(
     to top,
-    #FF4500,
-    #DC143C
+    #ff4500,
+    #dc143c
   ); /* Chrome 10-25, Safari 5.1-6 (OrangeRed to Crimson) */
   background: linear-gradient(
     to top,
-    #FF4500,
-    #DC143C
+    #ff4500,
+    #dc143c
   ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ (OrangeRed to Crimson) */
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
