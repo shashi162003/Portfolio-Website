@@ -1,7 +1,8 @@
 const express = require('express');
 const router = express.Router();
 const Blog = require('../models/Blog');
-const { protect, authorizeBlogCreation } = require('../middleware/auth');
+const User = require('../models/User');
+const { protect, authorizeBlogCreation, isAdmin } = require('../middleware/auth');
 
 // Get all blogs
 router.get('/', async (req, res) => {
@@ -122,7 +123,7 @@ router.put('/:id', protect, authorizeBlogCreation, async (req, res) => {
 });
 
 // Delete blog
-router.delete('/:id', protect, authorizeBlogCreation, async (req, res) => {
+router.delete('/:id', protect, isAdmin, async (req, res) => {
     try {
         const blog = await Blog.findById(req.params.id);
 
@@ -131,17 +132,7 @@ router.delete('/:id', protect, authorizeBlogCreation, async (req, res) => {
                 success: false,
                 message: 'Blog not found'
             });
-        }
-
-        // Check if user is the author
-        if (blog.author.toString() !== req.user._id.toString()) {
-            return res.status(403).json({
-                success: false,
-                message: 'Not authorized to delete this blog'
-            });
-        }
-
-        await blog.remove();
+        } await Blog.deleteOne({ _id: req.params.id });
 
         res.json({
             success: true,
@@ -233,4 +224,55 @@ router.post('/:id/comment', protect, async (req, res) => {
     }
 });
 
-module.exports = router; 
+// Delete comment
+router.delete('/:blogId/comment/:commentId', protect, async (req, res) => {
+    try {
+        const blog = await Blog.findById(req.params.blogId);
+
+        if (!blog) {
+            return res.status(404).json({
+                success: false,
+                message: 'Blog not found'
+            });
+        }
+
+        // Find the comment
+        const comment = blog.comments.id(req.params.commentId);
+
+        if (!comment) {
+            return res.status(404).json({
+                success: false,
+                message: 'Comment not found'
+            });
+        }
+
+        const adminEmails = ['shashikumargupta443@gmail.com', 'shashi@devshashi.dev'];
+        const isAdmin = adminEmails.includes(req.user.email);        // Check if user is the comment author or is admin
+        if (comment.author.toString() !== req.user._id.toString() && !isAdmin) {
+            return res.status(403).json({
+                success: false,
+                message: 'Not authorized to delete this comment'
+            });
+        }
+
+        // Remove the comment from the comments array
+        blog.comments = blog.comments.filter(c => c._id.toString() !== req.params.commentId);
+        await blog.save();
+
+        await blog.populate('author', 'name email avatar');
+        await blog.populate('comments.author', 'name email avatar');
+
+        res.json({
+            success: true,
+            data: blog
+        });
+    } catch (error) {
+        console.error('Error deleting comment:', error);
+        res.status(500).json({
+            success: false,
+            message: 'Error deleting comment'
+        });
+    }
+});
+
+module.exports = router;

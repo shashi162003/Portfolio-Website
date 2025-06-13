@@ -58,4 +58,18 @@ exports.authorizeBlogCreation = (req, res, next) => {
     }
 
     next();
-}; 
+};
+
+exports.isAdmin = (req, res, next) => {
+    const adminEmails = ['shashikumargupta443@gmail.com', 'shashi@devshashi.dev'];
+
+    if (!adminEmails.includes(req.user.email)) {
+        return res.status(403).json({
+            success: false,
+            message: 'Not authorized. Admin access required.'
+        });
+    }
+
+    req.user.isAdmin = true;
+    next();
+};

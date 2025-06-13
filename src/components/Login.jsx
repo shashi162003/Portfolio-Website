@@ -10,9 +10,15 @@ const Login = () => {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState('');
 
+    const emailRegex = /^[\w-]+(?:\.[\w-]+)*@[\w-]+(?:\.[\w-]+)*\.[a-zA-Z]{2,}$/;
+
     const handleSendOTP = async (e) => {
         e.preventDefault();
         setError('');
+        if (!emailRegex.test(email)) {
+            setError('Please enter a valid email address.');
+            return;
+        }
         setLoading(true);
 
         try {
@@ -143,4 +149,4 @@ const Login = () => {
     );
 };
 
-export default Login; 
+export default Login;

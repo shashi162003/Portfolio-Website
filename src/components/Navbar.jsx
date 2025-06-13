@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 import { styles } from "../styles";
-import { navLinks } from "../constants";
+import { navLinks as baseNavLinks } from "../constants";
 import { logo, menu, close } from "../assets";
 import { useAuth } from "../contexts/AuthContext";
 
@@ -11,6 +11,21 @@ const Navbar = () => {
   const [toggle, setToggle] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const { user, logout } = useAuth();
+  const location = useLocation();
+
+  // Conditionally add Feedback or Home navlink
+  let navLinks = [...baseNavLinks];
+  if (location.pathname === "/feedback") {
+    navLinks = [
+      ...baseNavLinks,
+      { id: "home", title: "Home", url: "/" }
+    ];
+  } else {
+    navLinks = [
+      ...baseNavLinks,
+      { id: "feedback", title: "Feedback", url: "/feedback" }
+    ];
+  }
 
   useEffect(() => {
     const handleScroll = () => {
@@ -51,32 +66,25 @@ const Navbar = () => {
 
         <ul className='list-none hidden sm:flex flex-row gap-10'>
           {navLinks.map((nav) => (
-            <li
-              key={nav.id}
-              className={`${active === nav.title ? "text-white" : "text-secondary"
-                } hover:text-white text-[18px] font-medium cursor-pointer`}
-              onClick={() => setActive(nav.title)}
-            >
-              {nav.isExternal ? (
-                <a
-                  href={nav.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  onClick={() => window.scrollTo(0, 0)}
-                >
-                  {nav.title}
-                </a>
-              ) : nav.url ? (
-                <Link
-                  to={nav.url}
-                  onClick={() => window.scrollTo(0, 0)}
-                >
-                  {nav.title}
-                </Link>
-              ) : (
+            nav.url ? (
+              <li
+                key={nav.id}
+                className={`${active === nav.title ? "text-white" : "text-secondary"
+                  } hover:text-white text-[18px] font-medium cursor-pointer`}
+                onClick={() => setActive(nav.title)}
+              >
+                <Link to={nav.url} onClick={() => window.scrollTo(0, 0)}>{nav.title}</Link>
+              </li>
+            ) : (
+              <li
+                key={nav.id}
+                className={`${active === nav.title ? "text-white" : "text-secondary"
+                  } hover:text-white text-[18px] font-medium cursor-pointer`}
+                onClick={() => setActive(nav.title)}
+              >
                 <a href={`#${nav.id}`}>{nav.title}</a>
-              )}
-            </li>
+              </li>
+            )
           ))}
         </ul>
 
@@ -94,39 +102,35 @@ const Navbar = () => {
           >
             <ul className='list-none flex justify-end items-start flex-1 flex-col gap-4'>
               {navLinks.map((nav) => (
-                <li
-                  key={nav.id}
-                  className={`font-poppins font-medium cursor-pointer text-[16px] ${active === nav.title ? "text-white" : "text-secondary"
-                    }`}
-                  onClick={() => {
-                    setToggle(!toggle);
-                    setActive(nav.title);
-                  }}
-                >
-                  {nav.isExternal ? (
-                    <a
-                      href={nav.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      onClick={() => window.scrollTo(0, 0)}
-                    >
-                      {nav.title}
-                    </a>
-                  ) : nav.url ? (
-                    <Link
-                      to={nav.url}
-                      onClick={() => {
-                        setToggle(!toggle);
-                        setActive(nav.title);
-                        window.scrollTo(0, 0);
-                      }}
-                    >
-                      {nav.title}
-                    </Link>
-                  ) : (
+                nav.url ? (
+                  <li
+                    key={nav.id}
+                    className={`font-poppins font-medium cursor-pointer text-[16px] ${active === nav.title ? "text-white" : "text-secondary"
+                      }`}
+                    onClick={() => {
+                      setToggle(!toggle);
+                      setActive(nav.title);
+                    }}
+                  >
+                    <Link to={nav.url} onClick={() => {
+                      setToggle(!toggle);
+                      setActive(nav.title);
+                      window.scrollTo(0, 0);
+                    }}>{nav.title}</Link>
+                  </li>
+                ) : (
+                  <li
+                    key={nav.id}
+                    className={`font-poppins font-medium cursor-pointer text-[16px] ${active === nav.title ? "text-white" : "text-secondary"
+                      }`}
+                    onClick={() => {
+                      setToggle(!toggle);
+                      setActive(nav.title);
+                    }}
+                  >
                     <a href={`#${nav.id}`}>{nav.title}</a>
-                  )}
-                </li>
+                  </li>
+                )
               ))}
             </ul>
           </div>

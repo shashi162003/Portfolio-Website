@@ -18,6 +18,8 @@ const Contact = () => {
 
   const [loading, setLoading] = useState(false);
 
+  const emailRegex = /^[\w-]+(?:\.[\w-]+)*@[\w-]+(?:\.[\w-]+)*\.[a-zA-Z]{2,}$/;
+
   const handleChange = (e) => {
     const { target } = e;
     const { name, value } = target;
@@ -30,6 +32,14 @@ const Contact = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (!form.name || !form.email || !form.message) {
+      toast.error('Please fill in all fields.');
+      return;
+    }
+    if (!emailRegex.test(form.email)) {
+      toast.error('Please enter a valid email address.');
+      return;
+    }
     setLoading(true);
 
     // Send email to yourself

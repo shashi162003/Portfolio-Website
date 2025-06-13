@@ -19,13 +19,18 @@ const FeedbackForm = () => {
         setForm({ ...form, [name]: value });
     };
 
+    const emailRegex = /^[\w-]+(?:\.[\w-]+)*@[\w-]+(?:\.[\w-]+)*\.[a-zA-Z]{2,}$/;
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         if (!form.name || !form.email || !form.message) {
             toast.error('Please fill in all fields.');
             return;
         }
-
+        if (!emailRegex.test(form.email)) {
+            toast.error('Please enter a valid email address.');
+            return;
+        }
         setLoading(true);
         try {
             const response = await fetch(`${config.apiUrl}/api/feedback`, {

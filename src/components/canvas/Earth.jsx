@@ -28,7 +28,7 @@ const Earth = () => {
 
 const EarthCanvas = () => {
   return (
-    <div className="w-full h-full">
+    <div className="w-full h-full cursor-pointer">
       <Canvas
         shadows
         frameloop='demand'
@@ -40,6 +40,7 @@ const EarthCanvas = () => {
           far: 200,
           position: [-4, 3, 6],
         }}
+        className="w-full h-full cursor-pointer"
       >
         <Suspense fallback={<CanvasLoader />}>
           <OrbitControls
