@@ -23,6 +23,7 @@ import BlogEditor from './components/BlogEditor';
 import Login from './components/Login';
 import { AuthProvider } from './contexts/AuthContext';
 import FeedbackForm from './components/FeedbackForm';
+import RecruiterChat from './components/RecruiterChat';
 
 const App = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -95,6 +96,7 @@ const App = () => {
               </motion.div>
             )}
           </AnimatePresence>
+          <RecruiterChat />
           <Footer />
         </div>
         <Toaster />
