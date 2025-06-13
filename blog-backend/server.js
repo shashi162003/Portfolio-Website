@@ -70,3 +70,10 @@ mongoose.connect(process.env.MONGODB_URI)
         console.error('MongoDB connection error:', error);
         process.exit(1);
     });
+
+app.get('/', (req, res) => {
+    res.status(200).json({
+        success: true,
+        message: 'Welcome to the DevShashi Blog API',
+    });
+});
