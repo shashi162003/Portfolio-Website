@@ -22,8 +22,8 @@ const Navbar = () => {
     ];
   } else if (location.pathname === "/feedback") {
     navLinks = [
-      ...baseNavLinks,
-      { id: "home", title: "Home", url: "/" }
+      { id: "home", title: "Home", url: "/" },
+      { id: "blog", title: "Blog", url: "/blog" }
     ];
   } else {
     navLinks = [
