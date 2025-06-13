@@ -13,9 +13,14 @@ const Navbar = () => {
   const { user, logout } = useAuth();
   const location = useLocation();
 
-  // Conditionally add Feedback or Home navlink
+  // Custom navigation for blog pages
   let navLinks = [...baseNavLinks];
-  if (location.pathname === "/feedback") {
+  if (location.pathname.startsWith('/blog')) {
+    navLinks = [
+      { id: "home", title: "Home", url: "/" },
+      { id: "feedback", title: "Feedback", url: "/feedback" }
+    ];
+  } else if (location.pathname === "/feedback") {
     navLinks = [
       ...baseNavLinks,
       { id: "home", title: "Home", url: "/" }

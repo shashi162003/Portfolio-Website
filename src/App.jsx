@@ -1,7 +1,8 @@
+import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
-import { Toaster } from 'react-hot-toast';
+import { Toaster, toast } from 'react-hot-toast';
 
 import {
   Navbar,
@@ -25,8 +26,18 @@ import FeedbackForm from './components/FeedbackForm';
 
 const App = () => {
   const [isLoading, setIsLoading] = useState(true);
+  const toastShown = React.useRef(false);
 
   useEffect(() => {
+    // Show browser compatibility toast only once
+    if (!toastShown.current) {
+      toast('For best experience, please use Firefox if you encounter any issues in Chrome', {
+        duration: 3000,
+        icon: '🌐',
+      });
+      toastShown.current = true;
+    }
+
     // Simulate loading time
     const timer = setTimeout(() => {
       setIsLoading(false);

@@ -4,6 +4,8 @@ import { format } from 'date-fns';
 import { useAuth } from '../contexts/AuthContext';
 import toast from 'react-hot-toast';
 import config from '../config';
+import { Navbar } from './';
+import { styles } from "../styles";
 
 const BlogList = () => {
     const [blogs, setBlogs] = useState([]);
@@ -36,47 +38,20 @@ const BlogList = () => {
 
     if (loading) {
         return (
-            <div className="min-h-screen bg-primary flex items-center justify-center">
-                <div className="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-tertiary"></div>
-            </div>
+            <>
+                <Navbar />
+                <div className="min-h-screen bg-primary flex items-center justify-center">
+                    <div className="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-tertiary"></div>
+                </div>
+            </>
         );
     }
 
     return (
-        <div className="min-h-screen bg-primary pt-24 pb-12 px-4">
-            <div className="max-w-7xl mx-auto">
-                <div className="flex justify-between items-center mb-8">
-                    <h1 className="text-4xl font-bold text-white">Blog Posts</h1>
-                    <div className="flex gap-4">
-                        {user ? (
-                            <>
-                                <Link
-                                    to="/blog/new"
-                                    className="px-6 py-3 bg-tertiary rounded-lg text-white font-medium hover:bg-tertiary/80 transition-all"
-                                >
-                                    Create New Blog Post
-                                </Link>
-                                <button
-                                    onClick={logout}
-                                    className="px-6 py-3 bg-red-500 rounded-lg text-white font-medium hover:bg-red-600 transition-all"
-                                >
-                                    Logout
-                                </button>
-                            </>
-                        ) : (
-                            <Link
-                                to="/login"
-                                className="px-6 py-3 bg-tertiary rounded-lg text-white font-medium hover:bg-tertiary/80 transition-all"
-                            >
-                                Login / Signup
-                            </Link>
-                        )}
-                    </div>
-                </div>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    {blogs.length === 0 && !loading && (
-                        <p className="text-white text-center col-span-full">No blog posts found.</p>
-                    )}
+        <div className="min-h-screen bg-primary">
+            <Navbar />
+            <div className="max-w-7xl mx-auto px-6 pt-24">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     {blogs.map((blog) => (
                         <Link
                             key={blog._id}
@@ -119,4 +94,4 @@ const BlogList = () => {
     );
 };
 
-export default BlogList; 
+export default BlogList;
