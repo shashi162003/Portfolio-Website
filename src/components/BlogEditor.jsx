@@ -73,11 +73,6 @@ const BlogEditor = () => {
 
         setLoading(true);
         try {
-            const formData = new FormData();
-            formData.append('title', title);
-            formData.append('excerpt', excerpt);
-            formData.append('content', editor.getHTML());
-
             let coverImageUrl = '';
             if (coverImage) {
                 const uploadedUrl = await handleImageUpload(coverImage);
@@ -90,7 +85,6 @@ const BlogEditor = () => {
             } else {
                 coverImageUrl = 'https://res.cloudinary.com/dtdt1c9og/image/upload/v1709892607/blog-media/default_blog_cover.jpg';
             }
-            formData.append('coverImage', coverImageUrl);
 
             const response = await fetch(`${config.apiUrl}/api/blogs`, {
                 method: 'POST',
@@ -99,11 +93,10 @@ const BlogEditor = () => {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
-                    title: title,
-                    excerpt: excerpt,
+                    title,
+                    excerpt,
                     content: editor.getHTML(),
-                    coverImage: coverImageUrl,
-                    media: []
+                    coverImage: coverImageUrl
                 }),
             });
 
@@ -286,4 +279,4 @@ const BlogEditor = () => {
     );
 };
 
-export default BlogEditor; 
+export default BlogEditor;

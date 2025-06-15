@@ -12,14 +12,19 @@ const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
   const { user, logout } = useAuth();
   const location = useLocation();
-
   // Custom navigation for blog pages
   let navLinks = [...baseNavLinks];
+
   if (location.pathname.startsWith('/blog')) {
     navLinks = [
       { id: "home", title: "Home", url: "/" },
       { id: "feedback", title: "Feedback", url: "/feedback" }
     ];
+    // Add create blog button if user is logged in, otherwise add login button
+    if (user) {
+      navLinks.push({ id: "create-blog", title: "Create Blog", url: "/blog/new" });
+    }
+    navLinks.push({ id: "login", title: user ? "Logout" : "Login", url: "/login" });
   } else if (location.pathname === "/feedback") {
     navLinks = [
       { id: "home", title: "Home", url: "/" },
@@ -71,15 +76,15 @@ const Navbar = () => {
 
         <ul className='list-none hidden sm:flex flex-row gap-10'>
           {navLinks.map((nav) => (
-            nav.url ? (
-              <li
-                key={nav.id}
-                className={`${active === nav.title ? "text-white" : "text-secondary"
-                  } hover:text-white text-[18px] font-medium cursor-pointer`}
-                onClick={() => setActive(nav.title)}
-              >
-                <Link to={nav.url} onClick={() => window.scrollTo(0, 0)}>{nav.title}</Link>
-              </li>
+            nav.url ? (<li
+              key={nav.id} className={`${nav.id === "create-blog" || nav.id === "login"
+                ? "bg-red-600 px-4 py-1.5 rounded-full text-white hover:bg-red-700"
+                : `${active === nav.title ? "text-white" : "text-secondary"} hover:text-white`
+                } text-[18px] font-medium cursor-pointer transition-colors duration-300`}
+              onClick={() => setActive(nav.title)}
+            >
+              <Link to={nav.url} onClick={() => window.scrollTo(0, 0)}>{nav.title}</Link>
+            </li>
             ) : (
               <li
                 key={nav.id}
@@ -107,22 +112,22 @@ const Navbar = () => {
           >
             <ul className='list-none flex justify-end items-start flex-1 flex-col gap-4'>
               {navLinks.map((nav) => (
-                nav.url ? (
-                  <li
-                    key={nav.id}
-                    className={`font-poppins font-medium cursor-pointer text-[16px] ${active === nav.title ? "text-white" : "text-secondary"
-                      }`}
-                    onClick={() => {
-                      setToggle(!toggle);
-                      setActive(nav.title);
-                    }}
-                  >
-                    <Link to={nav.url} onClick={() => {
-                      setToggle(!toggle);
-                      setActive(nav.title);
-                      window.scrollTo(0, 0);
-                    }}>{nav.title}</Link>
-                  </li>
+                nav.url ? (<li
+                  key={nav.id} className={`font-poppins font-medium cursor-pointer text-[16px] ${nav.id === "create-blog" || nav.id === "login"
+                    ? "bg-red-600 px-4 py-1.5 rounded-full text-white hover:bg-red-700"
+                    : `${active === nav.title ? "text-white" : "text-secondary"}`
+                    } transition-colors duration-300`}
+                  onClick={() => {
+                    setToggle(!toggle);
+                    setActive(nav.title);
+                  }}
+                >
+                  <Link to={nav.url} onClick={() => {
+                    setToggle(!toggle);
+                    setActive(nav.title);
+                    window.scrollTo(0, 0);
+                  }}>{nav.title}</Link>
+                </li>
                 ) : (
                   <li
                     key={nav.id}

@@ -47,7 +47,7 @@ const blogSchema = new mongoose.Schema({
     media: [{
         type: {
             type: String,
-            enum: ['image', 'video'],
+            enum: ['image', 'video', 'pdf'],
             required: true
         },
         url: {
