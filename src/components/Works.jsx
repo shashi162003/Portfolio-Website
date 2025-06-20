@@ -34,6 +34,17 @@ const ProjectCard = ({
             alt='project_image'
             className='w-full h-full object-cover rounded-2xl'
           />
+
+          <div
+            onClick={() => window.open(source_code_link, "_blank")}
+            className='absolute top-2 right-2 w-10 h-10 rounded-full bg-black/80 backdrop-blur-[2px] flex justify-center items-center cursor-pointer'
+          >
+            <img
+              src={github}
+              alt='source code'
+              className='w-1/2 h-1/2 object-contain'
+            />
+          </div>
         </div>
 
         <div className='flex-1 flex flex-col'>
