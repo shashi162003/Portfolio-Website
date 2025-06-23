@@ -88,7 +88,7 @@ The portfolio is fully responsive and optimized for:
 
 - **GitHub**: [https://github.com/shashi162003](https://github.com/shashi162003)
 - **LinkedIn**: [https://www.linkedin.com/in/shashi-kumar-gupta-36668b239](https://www.linkedin.com/in/shashi-kumar-gupta-36668b239)
-- **Portfolio**: [Your Portfolio URL] <!-- Update with your deployed URL -->
+- **Portfolio**: [https://devshashi.dev](https://devshashi.dev)
 - **Email**: [shashikumargupta443@gmail.com](mailto:shashikumargupta443@gmail.com)
 
 ## ⚠️ Known Issues
