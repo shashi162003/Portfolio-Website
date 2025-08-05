@@ -33,10 +33,12 @@ import bhabha from "./company/bhabha.png"
 
 import uber from "./uber.png"
 import chatty from "./chatty.png"
-import url from "./url.png"
+import uptime from "./uptime.png"
 import chat from "./chat.png"
 import algo from "./algo.png"
 import password from "./password.png"
+import url from "./url.png"
+import inv from "./inv.png"
 
 export {
   logo,
@@ -71,8 +73,10 @@ export {
   uber,
   bhabha,
   chatty,
-  url,
+  uptime,
   chat,
   algo,
   password,
+  url,
+  inv
 };

@@ -28,10 +28,11 @@ import {
   vercel,
   render,
   chatty,
-  url,
+  uptime,
   chat,
   algo,
-  password,
+  url,
+  inv
 } from "../assets";
 
 export const navLinks = [
@@ -110,7 +111,7 @@ const experiences = [
     company_name: "Bhabha Atomic Research Center",
     icon: bhabha,
     iconBg: "#383E56",
-    date: "May 2025 - Present",
+    date: "May 2025 - August 2025",
     points: [
       "Worked on Xilinx ZCU216 RFSoC board utilizing the QICK (Quantum Instrumentation Control Kit) library for high-speed signal generation and acquisition in quantum computing research environments.",
       "Developed and tested control sequences in Python, enabling precise waveform generation and hardware interfacing.",
@@ -123,7 +124,7 @@ const experiences = [
     company_name: "GeeksforGeeks",
     icon: geeksforgeeks,
     iconBg: "#383E56",
-    date: "July 2024 - Present",
+    date: "July 2024 - July 2025",
     points: [
       "Promoted GeeksforGeeks' initiatives by organizing workshops, webinars, and coding events, resulting in increased platform engagement among peers.",
       "Facilitated student participation in various GFG contests and programs, enhancing coding culture within the campus.",
@@ -172,6 +173,40 @@ const experiences = [
 ];
 
 const projects = [
+  {
+    name: "Inventory Management System (Offline Support)",
+    description:
+      "InvTrack is a modern full-stack inventory management system built with the MERN stack and OpenAI integration. It offers intelligent insights, automated alerts, a responsive UI, and a seamless offline-first experience to streamline stock control.",
+    tags: [
+      {
+        name: "react",
+        color: "blue-text-gradient",
+      },
+      {
+        name: "nodejs",
+        color: "green-text-gradient",
+      },
+      {
+        name: "express",
+        color: "orange-text-gradient",
+      },
+      {
+        name: "mongodb",
+        color: "pink-text-gradient",
+      },
+      {
+        name: "openai api",
+        color: "yellow-text-gradient"
+      },
+      {
+        name: "dexie.js",
+        color: "red-orange-gradient"
+      }
+    ],
+    image: inv,
+    source_code_link: "https://github.com/shashi162003/Flipr-Hackathon-2025---Inventory-Management",
+    live_demo_link: "https://inventory-management-topaz-tau.vercel.app/",
+  },
   {
     name: "Uber Clone",
     description:
@@ -237,6 +272,40 @@ const projects = [
     live_demo_link: "https://chatty-real-time-chat-app-green.vercel.app/",
   },
   {
+    name: "Uptime Tracker",
+    description: 
+    "A full-stack uptime monitoring application inspired by Uptime Robot. This project allows users to monitor website uptime, receive notifications, and view detailed reports. Built with a React frontend and Node.js/Express backend. (Backend is deployed on Render, may take a moment to spin up)",
+    tags:[
+      {
+        name: "react",
+        color: "blue-text-gradient",
+      },
+      {
+        name: "nodejs",
+        color: "green-text-gradient",
+      },
+      {
+        name: "express",
+        color: "orange-text-gradient",
+      },
+      {
+        name: "mongodb",
+        color: "pink-text-gradient",
+      },
+      {
+        name: "recharts",
+        color: "yellow-text-gradient"
+      },
+      {
+        name: "node-cron",
+        color: "red-orange-gradient"
+      }
+    ],
+    image: uptime,
+    source_code_link: "https://github.com/shashi162003/UptimeRobot",
+    live_demo_link: "https://uptime-robot-psi.vercel.app/",
+  },
+  {
     name: "URL Shortener",
     description:
       "A URL shortening service that converts long URLs into shorter, more manageable links. Features include custom URLs and analytics tracking. (Backend is deployed on Render, may take a moment to spin up)",
@@ -299,50 +368,6 @@ const projects = [
     image: chat,
     source_code_link: "https://github.com/shashi162003/ChatRoom",
     live_demo_link: "https://chat-room-mauve-delta.vercel.app/",
-  },
-  {
-    name: "Algorithm Visualizer",
-    description:
-      "An interactive web application that visualizes various sorting and searching algorithms. Helps in understanding how different algorithms work.",
-    tags: [
-      {
-        name: "react",
-        color: "blue-text-gradient",
-      },
-      {
-        name: "algorithms",
-        color: "green-text-gradient"
-      }
-    ],
-    image: algo,
-    source_code_link: "https://github.com/shashi162003/AlgoVisualiser",
-    live_demo_link: "https://shashi162003.github.io/AlgoVisualiser/",
-  },
-  {
-    name: "Password Generator",
-    description:
-      "A secure password generator that creates strong, random passwords based on user preferences. Includes options for length and character types.",
-    tags: [
-      {
-        name: "react",
-        color: "blue-text-gradient",
-      },
-      {
-        name: "nodejs",
-        color: "green-text-gradient",
-      },
-      {
-        name: "express",
-        color: "orange-text-gradient",
-      },
-      {
-        name: "mongodb",
-        color: "pink-text-gradient",
-      },
-    ],
-    image: password,
-    source_code_link: "https://github.com/shashi162003/Password-Generator",
-    live_demo_link: "https://shashi162003.github.io/Password-Generator/",
   },
 ];
 
